@@ -1,0 +1,7 @@
+{application,emqx_bridge_devnull,
+             [{description,"EMQ X Bridge to dev/null"},
+              {vsn,"git"},
+              {modules,[]},
+              {registered,[emqx_bridge_devnull_sup]},
+              {applications,[kernel, stdlib, jsx]},
+              {mod,{emqx_bridge_devnull_app,[]}}]}.
