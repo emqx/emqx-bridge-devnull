@@ -42,7 +42,11 @@ end_per_suite(_Config) ->
 hook_events(_Config) ->
     meck:new(emqx_bridge_devnull_writer, []),
     Self = self(),
-    meck:expect(emqx_bridge_devnull_writer, write, fun(Hook, _Fd, _Data) -> Self ! Hook, ok end),
+    meck:expect(emqx_bridge_devnull_writer, write,
+                fun(Hook, Fd, Data) ->
+                    Self ! Hook,
+                    meck:passthrough([Hook, Fd, Data])
+                end),
     {ok, T1} = emqtt:start_link([{host, "localhost"},
                                  {clientid, <<"dummyclient">>}]),
 

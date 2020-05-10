@@ -312,6 +312,6 @@ write(FunctionName, #writer{fd = Fd, encoder = Encoder}, Key, Data0) ->
          (X) -> X
       end,
   Data = lists:map(F, Data0),
-  Encoded = [Key, Encoder(Data)],
+  Encoded = [lists:map(fun a2b/1, Key), Encoder(Data)],
   ok = emqx_bridge_devnull_writer:write(FunctionName, Fd, Encoded).
 

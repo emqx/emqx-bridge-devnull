@@ -18,3 +18,4 @@ _checkouts/
 
 # ignore for now
 rebar.lock
+*conf.rendered
